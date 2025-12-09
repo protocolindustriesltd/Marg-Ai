@@ -1,2 +1,7 @@
-# Marg-Ai
-Ai Driven Road Monitoring System that turns any moving vehicle into an autonomous pothole detection unit.
+# Marg-AI
+
+Marg-AI — Pothole detection demo (frontend + simple backend).
+
+## Quick start (dev)
+
+### Backend
