@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Marg-Ai — India's intelligent road monitoring demo (pothole detection) by Protocol Industry.">
+  <title>Marg-Ai — Protocol Industry</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="shortcut icon" href="assets/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <meta name="theme-color" content="#7c3aed">
+
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="topbar" role="banner">
+    <div class="topbar-inner">
+      <div class="brand" role="img" aria-label="Protocol Industry — Marg-Ai">
+        <div class="logo-mark">
+          <img src="assets/logo.png" alt="Protocol Industry logo" class="logo-img">
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Marg-Ai</div>
+          <div class="brand-sub">India's Intelligent Road Monitoring System</div>
+          <div class="brand-sub">By Protocol Industry</div>
+        </div>
+      </div>
+
+      <div class="top-actions">
+        <div id="connectionStatus" class="status" aria-live="polite">Demo Mode</div>
+        <button id="toggleDemo" class="btn btn-ghost" aria-pressed="true">Toggle Demo</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="app" role="main">
+    <section class="left">
+      <div class="panel">
+        <div class="panel-head">
+          <h1 class="panel-title">Live Preview</h1>
+          <p class="panel-sub">Play the sample loop or upload a file. Alerts appear on the right.</p>
+        </div>
+
+        <div id="videoWrap" class="video-wrap" style="position:relative;">
+          <video id="demoVideo" class="media" autoplay loop muted playsinline aria-label="Demo video preview">
+            <source src="assets/sample.mp4" type="video/mp4">
+            Your browser does not support the video element.
+          </video>
+
+          <img id="frameImg" class="media" alt="Uploaded frame preview" style="display:none" />
+
+          <canvas id="overlay" class="overlay" aria-hidden="true"></canvas>
+
+          <div class="controls-row">
+            <label class="btn btn-primary file-btn" for="uploadInput">Upload image / video</label>
+            <input id="uploadInput" name="frame" type="file" accept="image/*,video/*" style="display:none" />
+
+            <button id="sendFrameBtn" class="btn btn-outline">Send current frame</button>
+
+            <button id="wsBtn" class="btn btn-ghost" aria-pressed="false">Connect WebSocket</button>
+
+            <div class="spacer" aria-hidden="true"></div>
+
+            <div class="endpoint-note" aria-hidden="false">
+              <div class="small muted">REST: <span id="restUrl"></span></div>
+              <div class="small muted">WS: <span id="wsUrl"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel small-panel" aria-labelledby="howItWorks">
+        <h2 id="howItWorks" class="panel-title">How this demo works</h2>
+        <p class="small muted">Client-side demo. Use Demo mode to simulate detections. Configure backend REST or WS endpoints when ready.</p>
+      </div>
+    </section>
+
+    <aside class="right" role="complementary" aria-label="Alerts panel">
+      <div class="panel">
+        <h2 class="panel-title">Alerts</h2>
+        <div id="alertsList" class="alerts-list" aria-live="polite"></div>
+        <div id="emptyNote" class="empty-note muted">No alerts yet — demo will generate alerts every few seconds.</div>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="footer" role="contentinfo">
+    <div>Made with ❤️ — Protocol Industry</div>
+  </footer>
+
+  <noscript>
+    <div style="padding:12px;background:#ffe8e8;color:#611a15;">JavaScript is required for this demo. Please enable JavaScript in your browser.</div>
+  </noscript>
+
+  <!-- runtime config: fill before deploy -->
+  <script>
+    window.BACKEND_REST_URL = "";
+    window.BACKEND_WS_URL   = "";
+  </script>
+
+  <script defer src="scripts/app.js"></script>
+</body>
+</html>
