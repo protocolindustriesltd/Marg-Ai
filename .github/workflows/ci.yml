@@ -1,1 +1,16 @@
-
+name: CI
+on: [push, pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with: node-version: 18
+      - name: Install backend deps
+        run: |
+          cd backend
+          npm ci
+      - name: Lint (skipped if none)
+        run: echo "No linter configured"
